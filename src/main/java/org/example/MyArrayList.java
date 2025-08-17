@@ -1,3 +1,5 @@
+package main.java.org.example;
+
 import java.util.Arrays;
 
 public class MyArrayList<T> {
@@ -9,26 +11,20 @@ public class MyArrayList<T> {
     private T[] elements;
 
     public MyArrayList() {
-
         this.elements = (T[]) new Object[defCapas];
         this.size = 0;
-
     }
 
     public void add(T element) {
-
         if (size >= elements.length) {
             resize();
         }
         elements[size++] = element;
-
     }
 
     public T get(int index) {
-
         checkIndex(index);
         return elements[index];
-
     }
 
     public void remove(int index) {
@@ -42,18 +38,22 @@ public class MyArrayList<T> {
     }
 
     public void addAll(T[] collection) {
-
         int collectionLength = collection.length;
 
         validCapacity(size + collectionLength);
         System.arraycopy(collection, 0, elements, size, collectionLength);
         size += collectionLength;
-
     }
 
     private void resize() {
         int newSize = elements.length * 2;
-        elements = Arrays.copyOf(elements, newSize);
+
+        Object[] newElements = new Object[newSize];
+
+        System.arraycopy(elements, 0, newElements, 0, elements.length);
+
+        elements = (T[]) newElements;
+
     }
 
     private void checkIndex(int index) {
