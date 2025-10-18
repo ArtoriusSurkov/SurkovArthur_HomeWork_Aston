@@ -1,6 +1,5 @@
-package org.homeWork;
+package main.java.org.homeWork;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 public class TestHashMap<K, V> {
@@ -15,9 +14,10 @@ public class TestHashMap<K, V> {
         }
     }
 
-    private final Node<K, V>[] table;
+    private Node<K, V>[] table;
     private int size;
-    private static final int INITIAL_CAPACITY = 4;
+    private static final int INITIAL_CAPACITY = 16;
+    private static final float LOAD_FACTOR_THRESHOLD = 0.75f;
 
     public TestHashMap() {
         this.size = 0;
@@ -42,6 +42,10 @@ public class TestHashMap<K, V> {
     }
 
     public void put(K key, V value) {
+        if ((float) size / table.length >= LOAD_FACTOR_THRESHOLD) {
+            resize();
+        }
+
         int index = hash(key);
         Node<K, V> newNode = new Node<>(key, value);
         Node<K, V> current = table[index];
@@ -62,6 +66,20 @@ public class TestHashMap<K, V> {
             }
             prev.next = newNode;
             size++;
+        }
+    }
+
+    private void resize() {
+        Node<K, V>[] oldTable = table;
+        int newCapacity = oldTable.length * 2;
+        table = new Node[newCapacity];
+        size = 0;
+
+        for (Node<K, V> node : oldTable) {
+            while (node != null) {
+                put(node.key, node.value);
+                node = node.next;
+            }
         }
     }
 
