@@ -41,7 +41,7 @@ public class TestHashMap<K, V> {
         return null;
     }
 
-    public void put(K key, V value) {
+    public V put(K key, V value) {
         if ((float) size / table.length >= LOAD_FACTOR_THRESHOLD) {
             resize();
         }
@@ -53,13 +53,14 @@ public class TestHashMap<K, V> {
         if (current == null) {
             table[index] = newNode;
             size++;
+            return null;
         } else {
             Node<K, V> prev = null;
-
             while (current != null) {
                 if (Objects.equals(current.key, key)) {
+                    V oldValue = current.value;
                     current.value = value;
-                    return;
+                    return oldValue;
                 }
                 prev = current;
                 current = current.next;
@@ -67,6 +68,7 @@ public class TestHashMap<K, V> {
             prev.next = newNode;
             size++;
         }
+        return null;
     }
 
     private void resize() {
