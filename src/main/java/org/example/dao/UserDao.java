@@ -29,7 +29,7 @@ public class UserDao {
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
             logger.error("Error while saving user: ", e);
-            return null;
+            throw new RuntimeException("Unable to save user: " + user, e);
         }
     }
 
@@ -40,7 +40,7 @@ public class UserDao {
             return user;
         } catch (Exception e) {
             logger.error("Error while fetching user by ID: {}", id, e);
-            return null;
+            throw new RuntimeException("Unable to fetch user with ID: " + id, e);
         }
     }
 
@@ -51,7 +51,7 @@ public class UserDao {
             return users;
         } catch (Exception e) {
             logger.error("Error while fetching all users: ", e);
-            return null;
+            throw new RuntimeException("Unable to fetch all users", e);
         }
     }
 
