@@ -8,8 +8,6 @@
         <property name="connection.driver_class">org.postgresql.Driver</property>
         <property name="connection.username">postgres</property>
         <property name="connection.password">1234</property>
-
-        <!-- DB schema will be updated if needed -->
         <property name="dialect">org.hibernate.dialect.PostgresPlusDialect</property>
         <property name="show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>

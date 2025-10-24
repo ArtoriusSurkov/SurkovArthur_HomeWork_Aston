@@ -15,7 +15,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private int id;
 
     @Column(name = "name")
     private String name;
@@ -34,11 +34,11 @@ public class User {
         this.created_at = LocalDateTime.now();
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -70,6 +70,14 @@ public class User {
         return created_at;
     }
 
+    public User() {
+    }
+
+    public User(String name, String email, int age) {
+        this.name = name;
+        this.email = email;
+        this.age = age;
+    }
 
     @Override
     public String toString() {

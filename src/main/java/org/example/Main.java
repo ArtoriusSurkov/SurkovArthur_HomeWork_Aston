@@ -81,7 +81,7 @@ public class Main {
 
     private static void readUser(Scanner scanner) {
         System.out.print("Enter user ID: ");
-        Long id = scanner.nextLong();
+        int id = scanner.nextInt();
         User fetchedUser = userService.getUser(id);
         logger.info("Fetched user: {}", fetchedUser);
         System.out.println(fetchedUser);
@@ -89,7 +89,7 @@ public class Main {
 
     private static void updateUser(Scanner scanner) {
         System.out.print("Enter user ID to update: ");
-        Long updateId = scanner.nextLong();
+        int updateId = scanner.nextInt();
         User updateUser = userService.getUser(updateId);
 
         if (updateUser != null) {
@@ -116,7 +116,7 @@ public class Main {
 
     private static void deleteUser(Scanner scanner) {
         System.out.print("Enter user ID to delete: ");
-        Long deleteId = scanner.nextLong();
+        int deleteId = scanner.nextInt();
         logger.info("Deleting user with ID: {}", deleteId);
         userService.deleteUser(deleteId);
     }

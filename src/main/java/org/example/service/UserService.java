@@ -6,7 +6,13 @@ import org.example.entity.User;
 import java.util.List;
 
 public class UserService {
+
     private UserDao userDao;
+
+    public UserService(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
     public UserService() {
         userDao = new UserDao();
     }
@@ -15,7 +21,7 @@ public class UserService {
         userDao.saveUser(user);
     }
 
-    public User getUser(Long id) {
+    public User getUser(int id) {
         return userDao.getUser(id);
     }
 
@@ -27,7 +33,7 @@ public class UserService {
         userDao.updateUser(user);
     }
 
-    public void deleteUser(Long id) {
+    public void deleteUser(int id) {
         userDao.deleteUser(id);
     }
 

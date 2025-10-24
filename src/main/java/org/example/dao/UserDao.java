@@ -11,7 +11,11 @@ import java.util.List;
 
 public class UserDao {
     private final SessionFactory sessionFactory;
+
     private static final Logger logger = LoggerFactory.getLogger(UserDao.class);
+    public UserDao(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     public UserDao() {
         sessionFactory = new Configuration().configure().buildSessionFactory();
@@ -33,7 +37,7 @@ public class UserDao {
         }
     }
 
-    public User getUser(Long id) {
+    public User getUser(int id) {
         try (Session session = sessionFactory.openSession()) {
             User user = session.get(User.class, id);
             logger.info("Fetched user by ID ({}): {}", id, user);
@@ -68,7 +72,7 @@ public class UserDao {
         }
     }
 
-    public void deleteUser(Long id) {
+    public void deleteUser(int id) {
         Transaction transaction = null;
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
