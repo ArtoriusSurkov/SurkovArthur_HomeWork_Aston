@@ -2,16 +2,18 @@ package org.example;
 
 import org.example.entity.User;
 import org.example.service.UserService;
-import java.util.List;
-import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.util.List;
+import java.util.Scanner;
 
 public class Main {
-    private static final UserService userService = new UserService();
+
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
+    private static final UserService userService = new UserService();
 
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
         logger.info("Application started.");
 
@@ -132,7 +134,6 @@ public class Main {
 
     private static void exitApplication(Scanner scanner) {
         logger.info("Exiting application.");
-        userService.close();
         scanner.close();
     }
 }

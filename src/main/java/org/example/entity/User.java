@@ -38,10 +38,6 @@ public class User {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
@@ -66,10 +62,6 @@ public class User {
         this.age = age;
     }
 
-    public LocalDateTime getCreated_at() {
-        return created_at;
-    }
-
     public User() {
     }
 
@@ -77,16 +69,5 @@ public class User {
         this.name = name;
         this.email = email;
         this.age = age;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", age=" + age +
-                ", created_at=" + created_at +
-                '}';
     }
 }

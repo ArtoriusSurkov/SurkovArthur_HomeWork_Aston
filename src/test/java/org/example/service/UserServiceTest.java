@@ -8,10 +8,8 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class UserServiceTest {
 
@@ -63,11 +61,5 @@ class UserServiceTest {
         int userId = 0;
         userService.deleteUser(userId);
         verify(mockUserDao).deleteUser(userId);
-    }
-
-    @Test
-    public void testClose() {
-        userService.close();
-        verify(mockUserDao).close();
     }
 }

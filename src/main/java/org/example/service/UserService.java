@@ -1,43 +1,40 @@
 package org.example.service;
 
 import org.example.dao.UserDao;
+import org.example.dao.UserDaoImpl;
 import org.example.entity.User;
+import org.hibernate.SessionFactory;
 
 import java.util.List;
 
 public class UserService {
 
-    private UserDao userDao;
-
-    public UserService(UserDao userDao) {
-        this.userDao = userDao;
-    }
+    private UserDao usersDao = new UserDaoImpl();
 
     public UserService() {
-        userDao = new UserDao();
     }
 
-    public void saveUser(User user) {
-        userDao.saveUser(user);
+    public UserService(UserDao userDao) {
+        this.usersDao = userDao;
     }
 
     public User getUser(int id) {
-        return userDao.getUser(id);
+        return usersDao.getUser(id);
     }
 
-    public List<User> getAllUsers() {
-        return userDao.getAllUsers();
-    }
-
-    public void updateUser(User user) {
-        userDao.updateUser(user);
+    public void saveUser(User user) {
+        usersDao.saveUser(user);
     }
 
     public void deleteUser(int id) {
-        userDao.deleteUser(id);
+        usersDao.deleteUser(id);
     }
 
-    public void close() {
-        userDao.close();
+    public void updateUser(User user) {
+        usersDao.updateUser(user);
+    }
+
+    public List<User> getAllUsers() {
+        return usersDao.getAllUsers();
     }
 }
